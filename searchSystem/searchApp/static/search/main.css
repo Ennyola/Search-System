@@ -1,0 +1,113 @@
+body {
+    /* background-image is inputed and here*/
+    background-image: url("https://res.cloudinary.com/mide358/image/upload/v1568715997/Background-img2_hc8lnn.png");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+}
+
+form {
+    text-align: center;
+    margin-top: -5%;
+}
+
+input {
+    border: 2px solid #A625D3;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    width: 370px;
+    height: 23px;
+    background-color: white;
+}
+
+.button {
+    background-color: #A625D3;
+    color: black;
+    border-radius: 20px;
+    border-color: #A625D3;
+    width: 400px;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.other-details a {
+    display: inline-block;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 25px;
+    color: #A625D3;
+    text-decoration: none;
+}
+
+::placeholder {
+    color: black;
+    font-size: 20px;
+}
+
+img {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    max-width: 100%;
+    margin-top: 15%;
+    padding-bottom: 25px;
+}
+
+.other-details {
+    text-align: center;
+}
+
+.forgot {
+    text-align: center;
+    padding-bottom: 40px;
+    margin-top: -50px;
+    font-size: 25px;
+}
+
+.password-details a {
+    font-size: 20px;
+    text-decoration: none;
+    color: #A625D3;
+}
+
+#message {
+    display: none;
+    position: relative;
+}
+
+#message p {
+    padding: 10px 30px;
+    font-size: 18px;
+}
+
+
+/* Add a green text color and a checkmark when the requirements are right*/
+
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -30px;
+    content: "&#10004;";
+}
+
+
+/* Add a red text color and an "x" when the requirements are wrong*/
+
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -30px;
+    content: "&#10006;";
+}

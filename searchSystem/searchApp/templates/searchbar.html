@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 50%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+#fetch{
+  display : none;
+}
+
+#filter{
+  display:none
+}
+
+.second{
+  display:none
+}
+</style>
+</head>
+<body>
+
+<h2>Search Data</h2>
+
+<a href = "{% url "searchapp:logout" %}" style = " float:right ">logout  </a>
+
+<form action = "" method = "POST">
+{% csrf_token %}
+
+    <input type="text" class="myInput" placeholder="Search for names.."  name = "fullname">
+    <input type="text" class="myInput" placeholder="Filter Using Full name of University e.g University Of Lagos" name = "school">
+    <input type="text" class="myInput" placeholder="Year Of Graduation"  name = "grad_year">
+
+    <input type = "submit" value = "Search" >
+
+</form>
+
+<div class = "container">
+
+  <table id="myTable">
+    <tr class="header">
+      <th style="width:20%;">Name</th>
+      <th style="width:20%;">School</th>
+      <th style = "width:20%;"> Department </th>
+      <th style="width:20%;">Grade</th>
+      <th style="width:20%;">Certificate Type</th>
+      <th style="width:20%;">Year of Graduation</th>
+      
+
+    </tr>
+     {% for student in student  %}
+         <tr>
+            <td> {{student.fullname}}  </td>
+            <td>  {{student.school.name}} </td>
+            <td>  {{student.department.name}} </td>
+            <td>  {{student.grade.type}} </td>
+            <td>  {{student.certificate.name}} </td>
+            <td>  {{student.year_of_grad}} </td>
+
+         </tr>
+    {% endfor %}  
+    
+  </table>
+</div>
+<script>
+var input, filter, table, tr, td, i, txtValue;
+input = document.getElementById("myInput");
+form = document.getElementsByTagName("form")
+let filterButton = document.getElementById("filter");
+
+  
+
+function myFunction() {
+  
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    console.log(td)
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      console.log(td.textContent)
+      if (txtValue !== ""){
+        filterButton.style.display = "inline";
+      }
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+</body>
+</html>
+
+
+{% comment %} <table id="myTable">
+  <tr class="header">
+    <th style="width:60%;">Name</th>
+    <th style="width:40%;">School</th>
+  </tr>
+  {% for %}
+
+   {% endfor %} 
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Berglunds snabbkop</td>
+    <td>Sweden</td>
+  </tr>
+  <tr>
+    <td>Island Trading</td>
+    <td>UK</td>
+  </tr>
+  <tr>
+    <td>Koniglich Essen</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Laughing Bacchus Winecellars</td>
+    <td>Canada</td>
+  </tr>
+  <tr>
+    <td>Magazzini Alimentari Riuniti</td>
+    <td>Italy</td>
+  </tr>
+  <tr>
+    <td>North/South</td>
+    <td>UK</td>
+  </tr>
+  <tr>
+    <td>Paris specialites</td>
+    <td>France</td>
+  </tr>
+</table> {% endcomment %}
